@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/CyberPatrick/server-vk-app#readme",
   "dependencies": {
-    "heroku": "^7.42.8",
     "ws": "^7.3.1"
   }
 }
