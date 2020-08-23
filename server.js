@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
-
-const server = new WebSocket.Server({ port: 3001 });
+const port = process.env.PORT || 5000;
+const server = new WebSocket.Server({ port: [port] });
 
 let games = {};
 
