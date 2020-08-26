@@ -25,6 +25,7 @@ server.on('connection', ws => {
         let message_start = message.slice(0, 3);
         let separator = message.indexOf('&');
         let user_id = message.slice(3, separator);
+        console.log(user_id);
         if (message_start === 'GTF') {
             for (let [id, game] of Object.entries(games)) {
                 if (!game.play) {
