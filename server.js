@@ -25,7 +25,6 @@ server.on('connection', ws => {
         let message_start = message.slice(0, 3);
         let separator = message.indexOf('&');
         let user_id = message.slice(3, separator);
-        console.log(user_id);
         if (message_start === 'GTF') {
             for (let [id, game] of Object.entries(games)) {
                 if (!game.play) {
@@ -53,6 +52,7 @@ server.on('connection', ws => {
             let game_id = message.slice(separator + 1);
             games[game_id][user_id].send('GTE');
             delete games[game_id];
+            console.log(`Game № ${game_id} was removed`)
         }
     });
 })
