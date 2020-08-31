@@ -10,9 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c61ff9a-0e9c-40fa-98a8-baaa38a937cd" name="Default Changelist" comment="hren">
+    <list default="true" id="3c61ff9a-0e9c-40fa-98a8-baaa38a937cd" name="Default Changelist" comment="second">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
@@ -47,6 +47,9 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3c61ff9a-0e9c-40fa-98a8-baaa38a937cd" name="Default Changelist" comment="" />
@@ -71,7 +74,17 @@
       <workItem from="1598173204821" duration="7765000" />
       <workItem from="1598181820227" duration="484000" />
       <workItem from="1598183079292" duration="2521000" />
-      <workItem from="1598200427818" duration="3155000" />
+      <workItem from="1598200427818" duration="3750000" />
+      <workItem from="1598441508569" duration="538000" />
+      <workItem from="1598519747048" duration="168000" />
+      <workItem from="1598710983779" duration="1467000" />
+      <workItem from="1598712671520" duration="374000" />
+      <workItem from="1598713233358" duration="1818000" />
+      <workItem from="1598715205990" duration="391000" />
+      <workItem from="1598775756520" duration="1820000" />
+      <workItem from="1598777892898" duration="1734000" />
+      <workItem from="1598779787797" duration="1957000" />
+      <workItem from="1598782293523" duration="1644000" />
     </task>
     <task id="LOCAL-00001" summary="hren">
       <created>1597330227618</created>
@@ -114,10 +127,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="309" y="42" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1597770288839" />
-    <state x="896" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598202101870">
+    <state x="887" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598778450234">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="896" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1598202101870" />
+    <state x="887" y="222" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1598778450234" />
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597312787344">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -146,18 +159,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="495" y="84" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1597330119358" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1598200738075">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1598441548257">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1598200738075" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1598441548257" />
     <state x="210" y="100" width="1037" height="528" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1598203713045">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="210" y="100" width="1037" height="528" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1598203713045" />
-    <state x="210" y="100" width="1037" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1598203713045">
+    <state x="210" y="100" width="1037" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1598776368610">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="210" y="100" width="1037" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1598203713045" />
+    <state x="210" y="100" width="1037" height="528" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1598776368610" />
     <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597328491785">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

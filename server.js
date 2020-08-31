@@ -7,7 +7,7 @@ const conn = mysql.createConnection({
     database: 'DNC5mb5vKM',
     host: 'remotemysql.com',
     user: 'DNC5mb5vKM',
-    password: '1PtmB2OKlH',
+    password: 'IGYZwPzX2c',
     port: '3306'
 }).promise();
 // password: process.end.PASSWORD
