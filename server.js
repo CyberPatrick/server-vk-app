@@ -59,6 +59,7 @@ server.on('connection', ws => {
         let message_start = message.slice(0, 3);
         let separator = message.indexOf('&');
         let user_id = message.slice(3, separator);
+        console.log(message);
         if (message_start === 'GTF') {
             for (let [id, game] of Object.entries(games)) {
                 if (!game.play) {
@@ -92,6 +93,7 @@ server.on('connection', ws => {
             let first_name = message.slice(separator + 1, end);
             let last_name = message.slice(end + 1);
             answer = checkUser(user_id, first_name, last_name);
+            console.log(answer);
             ws.send(`INF${JSON.stringify(answer)}`);
         } 
     });
