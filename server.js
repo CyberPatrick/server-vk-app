@@ -2,6 +2,29 @@ const WebSocket = require('ws');
 const port = process.env.PORT || 5000;
 const server = new WebSocket.Server({ port: port });
 
+const mysql = require('mysql2');
+const conn = mysql.createConnection({
+    database: 'DNC5mb5vKM',
+    host: 'remotemysql.com',
+    user: 'DNC5mb5vKM',
+    password: '1PtmB2OKlH',
+    port: '3306'
+}).promise();
+// password: process.end.PASSWORD
+conn.connect(err => {
+    if (err) {
+        console.log(`Error: ${err.message}`);
+    } else {
+        console.log('Connected to database');
+    }
+});
+
+conn.connect()
+    .then(console.log('Connected to database'))
+    .catch(err => {
+        console.log(`Error: ${err.message}`);
+    });
+
 let games = {};
 
 // games = {
@@ -15,10 +38,21 @@ let games = {};
 // Message structure:
 // GTGuser_id&game_id&cell
 
-console.log('Server created')
+console.log('Server created');
 
 let found = false;
 const player_1_symbol = Symbol('player_1');
+
+
+async function checkUser(user_id, first_name, last_name) {
+    const answer = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
+    if (!answer) {
+        conn.execute('INSERT INTO `tic-tac-toe` (user_id) VALUES (?)', [user_id]);
+        return {games: 0, wins: 0, points: 0};
+    }
+    return {games: answer[1], wins: answer[2], points: answer[3]};
+}
+
 
 server.on('connection', ws => {
     ws.on('message', message => {
@@ -53,6 +87,12 @@ server.on('connection', ws => {
             games[game_id][user_id].send('GTE');
             delete games[game_id];
             console.log(`Game № ${game_id} was removed`)
-        }
+        } else if (message_start === 'INF') {
+            let end = message.lastIndexOf('&');
+            let first_name = message.slice(separator + 1, end);
+            let last_name = message.slice(end + 1);
+            answer = checkUser(user_id, first_name, last_name);
+            ws.send(`INF${JSON.stringify(answer)}`);
+        } 
     });
 })
