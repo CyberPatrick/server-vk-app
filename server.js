@@ -49,12 +49,12 @@ function checkUser(user_id, first_name, last_name) {
     conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id])
         .then(result => {
             answer = result;
-            console.log(result);
+            console.log('Result: ' + result);
         })
         .catch(err => {
-            console.log('Error occured: ' + err);
+            console.log('Error occured: ' + err.message);
         });
-    console.log(answer);
+    console.log('Function answer: ' + answer);
     if (!answer) {
         conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
         return {games: 0, wins: 0, points: 0};
