@@ -47,11 +47,16 @@ const player_1_symbol = Symbol('player_1');
 async function checkUser(user_id, first_name, last_name) {
     const answer = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
     console.log('Answer: ' + answer);
-    if (!answer) {
-        conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
-        return {games: 0, wins: 0, points: 0};
+    let test;
+    for (let object of answer) {
+        test += object;
     }
-    return {games: answer[2], wins: answer[3], points: answer[4]};
+    return (test);
+    // if (!answer) {
+    //     conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
+    //     return {games: 0, wins: 0, points: 0};
+    // }
+    // return {games: answer[2], wins: answer[3], points: answer[4]};
 }
 
 
