@@ -48,7 +48,7 @@ async function checkUser(user_id, first_name, last_name) {
     const answer = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
     console.log('Answer: ' + answer);
     if (!answer) {
-        await conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
+        conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
         return {games: 0, wins: 0, points: 0};
     }
     return {games: answer[1], wins: answer[2], points: answer[3]};
@@ -94,7 +94,7 @@ server.on('connection', ws => {
             let first_name = message.slice(separator + 1, end);
             let last_name = message.slice(end + 1);
             answer = checkUser(user_id, first_name, last_name).then(data => {
-                console.log(answer);
+                console.log(data);
             ws.send(`INF${JSON.stringify(answer)}`);
             });
         } 
