@@ -45,21 +45,18 @@ const player_1_symbol = Symbol('player_1');
 
 
 function checkUser(user_id, first_name, last_name) {
-    let answer;
     conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id])
         .then(result => {
-            answer = result;
-            console.log('Result: ' + result);
+            const answer = result;
+            if (!answer) {
+                conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
+                return {games: 0, wins: 0, points: 0};
+            }
+            return {games: answer[1], wins: answer[2], points: answer[3]};
         })
         .catch(err => {
             console.log('Error occured: ' + err.message);
         });
-    console.log('Function answer: ' + answer);
-    if (!answer) {
-        conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
-        return {games: 0, wins: 0, points: 0};
-    }
-    return {games: answer[1], wins: answer[2], points: answer[3]};
 }
 
 
