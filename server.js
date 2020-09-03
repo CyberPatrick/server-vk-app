@@ -44,12 +44,17 @@ let found = false;
 const player_1_symbol = Symbol('player_1');
 
 
-async function checkUser(user_id, first_name, last_name) {
+function checkUser(user_id, first_name, last_name) {
     let answer;
     conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id])
         .then(result => {
             answer = result;
+            console.log(result);
         })
+        .catch(err => {
+            console.log(err);
+        });
+    console.log(answr);
     if (!answer) {
         conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
         return {games: 0, wins: 0, points: 0};
