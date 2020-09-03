@@ -48,7 +48,7 @@ async function checkUser(user_id, first_name, last_name) {
     const answer = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
     console.log('Answer: ' + answer);
     let test;
-    for (let object of answer) {
+    for (let object in answer) {
         test += object;
     }
     return (test);
