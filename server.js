@@ -93,7 +93,7 @@ server.on('connection', ws => {
             let end = message.lastIndexOf('&');
             let first_name = message.slice(separator + 1, end);
             let last_name = message.slice(end + 1);
-            answer = checkUser(user_id, first_name, last_name);
+            answer = checkUser(user_id, first_name, last_name).then();
             console.log(answer);
             ws.send(`INF${JSON.stringify(answer)}`);
         } 
