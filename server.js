@@ -47,11 +47,11 @@ const player_1_symbol = Symbol('player_1');
 async function checkUser(user_id, first_name, last_name) {
     const answer = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
     console.log('Answer: ' + answer);
-    console.log(typeof answer);
-    let test = '';
+    let test = 'hm';
     for (let list of answer) {
         for (let object of list) {
-            test =+ object;
+            console.log(object);
+            test = test + object;
         };
     };
     return (test);
