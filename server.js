@@ -51,7 +51,7 @@ async function checkUser(user_id, first_name, last_name) {
         conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
         return {games: 0, wins: 0, points: 0};
     }
-    return {games: answer[0][1], wins: answer[0][2], points: answer[0][3]};
+    return {games: answer[1][1], wins: answer[1][2], points: answer[1][3]};
 }
 
 
