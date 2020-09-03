@@ -52,9 +52,9 @@ function checkUser(user_id, first_name, last_name) {
             console.log(result);
         })
         .catch(err => {
-            console.log(err);
+            console.log('Error occured: ' + err);
         });
-    console.log(answr);
+    console.log(answer);
     if (!answer) {
         conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
         return {games: 0, wins: 0, points: 0};
