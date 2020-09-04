@@ -46,14 +46,13 @@ const player_1_symbol = Symbol('player_1');
 
 async function checkUser(user_id, first_name, last_name, avatar) {
     const [row, field] = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
-    conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name, avatar) VALUES (?, ?, ?, ?)', 
-    [user_id, first_name, last_name, avatar]);
-    console.log(row);
-    // if (!answer) {
-    //     conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
-    //     return {games: 0, wins: 0, points: 0};
-    // }
-    // return {games: answer[2], wins: answer[3], points: answer[4]};
+    if (!row) {
+        conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name, avatar) VALUES (?, ?, ?, ?)', 
+            [user_id, first_name, last_name, avatar]);
+        return {games: 0, wins: 0, points: 0};
+    }
+    console.log(row.user_id);
+    return {games: row.user_id, wins: row.wins, points: row.points};
 }
 
 
@@ -93,15 +92,12 @@ server.on('connection', ws => {
             console.log(`Game № ${game_id} was removed`)
         } else if (message_start === 'INF') {
             let center = message.slice(start + 1).indexOf('&') + start + 1;
-            console.log(center);
             let end = message.slice(center + 1).indexOf('&') + center + 1;
-            console.log(end);
             let avatar = message.slice(end + 1);
             let first_name = message.slice(start + 1, center);
             let last_name = message.slice(center + 1, end);
-            answer = checkUser(user_id, first_name, last_name, avatar).then(data => {
-                console.log(data);
-            ws.send(`INF${JSON.stringify(answer)}`);
+            checkUser(user_id, first_name, last_name, avatar).then(answer => {
+                ws.send(`INF${JSON.stringify(answer)}`);
             });
         } 
     });
