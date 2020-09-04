@@ -44,9 +44,10 @@ let found = false;
 const player_1_symbol = Symbol('player_1');
 
 
-async function checkUser(user_id, first_name, last_name) {
+async function checkUser(user_id, first_name, last_name, avatar) {
     const users = await conn.execute('SELECT user_id FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
-    conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?, ?, ?)', [user_id, first_name, last_name])
+    conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name, avatar) VALUES (?, ?, ?, ?)', 
+    [user_id, first_name, last_name, avatar]);
     // if (!answer) {
     //     conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
     //     return {games: 0, wins: 0, points: 0};
@@ -58,8 +59,8 @@ async function checkUser(user_id, first_name, last_name) {
 server.on('connection', ws => {
     ws.on('message', message => {
         let message_start = message.slice(0, 3);
-        let separator = message.indexOf('&');
-        let user_id = message.slice(3, separator);
+        let start = message.indexOf('&');
+        let user_id = message.slice(3, start);
         console.log(message);
         if (message_start === 'GTF') {
             for (let [id, game] of Object.entries(games)) {
@@ -81,19 +82,21 @@ server.on('connection', ws => {
             found = false;
         } else if (message_start === 'GTG') {
             let end = message.lastIndexOf('&');
-            let game_id = message.slice(separator + 1, end);
+            let game_id = message.slice(start + 1, end);
             let cell = message.slice(end + 1);
             games[game_id][user_id].send(`GTG${cell}`);
         } else if (message_start === 'GTE') {
-            let game_id = message.slice(separator + 1);
+            let game_id = message.slice(start + 1);
             games[game_id][user_id].send('GTE');
             delete games[game_id];
             console.log(`Game № ${game_id} was removed`)
         } else if (message_start === 'INF') {
             let end = message.lastIndexOf('&');
-            let first_name = message.slice(separator + 1, end);
+            let center = message.slice(start + 1).indexOf('&') + (start + 1);
+            let avatar = message.slice(start, center);
+            let first_name = message.slice(start + 1, end);
             let last_name = message.slice(end + 1);
-            answer = checkUser(user_id, first_name, last_name).then(data => {
+            answer = checkUser(user_id, first_name, last_name, avatar).then(data => {
                 console.log(data);
             ws.send(`INF${JSON.stringify(answer)}`);
             });
