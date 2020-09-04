@@ -92,9 +92,9 @@ server.on('connection', ws => {
             delete games[game_id];
             console.log(`Game № ${game_id} was removed`)
         } else if (message_start === 'INF') {
-            let center = message.slice(start + 1).indexOf('&') + start;
+            let center = message.slice(start + 1).indexOf('&') + start + 1;
             console.log(center);
-            let end = message.slice(center + 1).indexOf('&') + center;
+            let end = message.slice(center + 1).indexOf('&') + center + 1;
             console.log(end);
             let avatar = message.slice(end + 1);
             let first_name = message.slice(start + 1, center);
