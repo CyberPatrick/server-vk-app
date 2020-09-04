@@ -45,10 +45,10 @@ const player_1_symbol = Symbol('player_1');
 
 
 async function checkUser(user_id, first_name, last_name, avatar) {
-    const users = await conn.execute('SELECT user_id FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
-    // conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name, avatar) VALUES (?, ?, ?, ?)', 
-    // [user_id, first_name, last_name, avatar]);
-    console.log(users);
+    const [field, row] = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
+    conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name, avatar) VALUES (?, ?, ?, ?)', 
+    [user_id, first_name, last_name, avatar]);
+    console.log(field);
     // if (!answer) {
     //     conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name) VALUES (?)', [user_id, first_name, last_name]);
     //     return {games: 0, wins: 0, points: 0};
@@ -94,9 +94,9 @@ server.on('connection', ws => {
         } else if (message_start === 'INF') {
             let end = message.lastIndexOf('&');
             let center = message.slice(start + 1).indexOf('&') + (start + 1);
-            let avatar = message.slice(start, center);
-            let first_name = message.slice(start + 1, end);
-            let last_name = message.slice(end + 1);
+            let avatar = message.slice(end);
+            let first_name = message.slice(start + 1, center);
+            let last_name = message.slice(center + 1, end);
             answer = checkUser(user_id, first_name, last_name, avatar).then(data => {
                 console.log(data);
             ws.send(`INF${JSON.stringify(answer)}`);
