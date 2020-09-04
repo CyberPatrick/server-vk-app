@@ -45,14 +45,13 @@ const player_1_symbol = Symbol('player_1');
 
 
 async function checkUser(user_id, first_name, last_name, avatar) {
-    const [row, field] = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
+    const [row, field] = await conn.execute('SELECT games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
     if (!row[0]) {
         conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name, avatar) VALUES (?, ?, ?, ?)', 
             [user_id, first_name, last_name, avatar]);
         return {games: 0, wins: 0, points: 0};
     }
-    console.log(row[0].user_id);
-    return {games: row[0].user_id, wins: row[0].wins, points: row[0].points};
+    return {games: row[0].games, wins: row[0].wins, points: row[0].points};
 }
 
 
