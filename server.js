@@ -45,7 +45,7 @@ const player_1_symbol = Symbol('player_1');
 
 
 async function checkUser(user_id, first_name, last_name) {
-    const [row, field] = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
+    const [row, field] = await conn.query('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
     console.log('Answer: ' + row);
     console.log('Field: ' + field);
     // if (!answer) {
