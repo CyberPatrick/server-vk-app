@@ -45,7 +45,7 @@ const player_1_symbol = Symbol('player_1');
 
 
 async function checkUser(user_id, first_name, last_name, avatar) {
-    const [field, row] = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
+    const [row, field] = await conn.execute('SELECT user_id, games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
     conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name, avatar) VALUES (?, ?, ?, ?)', 
     [user_id, first_name, last_name, avatar]);
     console.log(field);
@@ -92,8 +92,11 @@ server.on('connection', ws => {
             delete games[game_id];
             console.log(`Game № ${game_id} was removed`)
         } else if (message_start === 'INF') {
+            console.log(message);
             let end = message.lastIndexOf('&');
+            console.log(end);
             let center = message.slice(start + 1).indexOf('&') + (start + 1);
+            console.log(center);
             let avatar = message.slice(end);
             let first_name = message.slice(start + 1, center);
             let last_name = message.slice(center + 1, end);
