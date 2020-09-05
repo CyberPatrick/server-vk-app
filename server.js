@@ -46,7 +46,6 @@ const player_1_symbol = Symbol('player_1');
 
 async function checkUser(user_id, first_name, last_name, avatar) {
     const [row, field] = await conn.execute('SELECT games, wins, points FROM `tic-tac-toe` WHERE user_id=?', [user_id]);
-    console.log(row);
     if (!row[0]) {
         conn.execute('INSERT INTO `tic-tac-toe` (user_id, first_name, last_name, avatar) VALUES (?, ?, ?, ?)', 
             [user_id, first_name, last_name, avatar]);
