@@ -51,7 +51,6 @@ async function checkUser(user_id, first_name, last_name, avatar) {
             [user_id, first_name, last_name, avatar]);
         return {games: 0, wins: 0, points: 0};
     }
-    console.log(row[0].games);
     return {games: row[0].games, wins: row[0].wins, points: row[0].points};
 }
 
@@ -61,7 +60,6 @@ server.on('connection', ws => {
         let message_start = message.slice(0, 3);
         let start = message.indexOf('&');
         let user_id = message.slice(3, start);
-        console.log(message);
         if (message_start === 'GTF') {
             for (let [id, game] of Object.entries(games)) {
                 if (!game.play) {
