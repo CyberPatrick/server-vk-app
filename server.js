@@ -51,6 +51,7 @@ async function checkUser(user_id, first_name, last_name, avatar) {
             [user_id, first_name, last_name, avatar]);
         return {games: 0, wins: 0, points: 0};
     }
+    console.log(row[0].games);
     return {games: row[0].games, wins: row[0].wins, points: row[0].points};
 }
 
@@ -96,6 +97,7 @@ server.on('connection', ws => {
             let first_name = message.slice(start + 1, center);
             let last_name = message.slice(center + 1, end);
             checkUser(user_id, first_name, last_name, avatar).then(answer => {
+                console.log('Sending info...')
                 ws.send(`INF${JSON.stringify(answer)}`);
             });
         } 
